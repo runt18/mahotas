@@ -185,5 +185,5 @@ def lbp_names(radius, points):
     codes = _lbp.map(codes.astype(np.uint32), points)
     pivots = (codes == iters)
     npivots = np.sum(pivots)
-    return ['lbp_r{}_p{}_{}'.format(radius, points, i) for i in range(npivots)]
+    return ['lbp_r{0}_p{1}_{2}'.format(radius, points, i) for i in range(npivots)]
 
