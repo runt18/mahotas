@@ -28,7 +28,7 @@ def _tas(img, thresh, margin):
         bins = _bins3
         saved = 27
     else:
-        raise ValueError('mahotas.tas: Cannot compute TAS for image of %s dimensions' % len(img.shape))
+        raise ValueError('mahotas.tas: Cannot compute TAS for image of {0!s} dimensions'.format(len(img.shape)))
 
     def _ctas(img):
         V = convolve(img.astype(np.uint8), M)

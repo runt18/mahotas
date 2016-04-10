@@ -43,11 +43,11 @@ from ._filters import mode2int, modes, _check_mode
 
 def _check_interpolate(array, order, funcname):
     if not (0 < order < 5):
-        raise ValueError('mahotas.interpolate.%s: spline order not supported' % funcname)
+        raise ValueError('mahotas.interpolate.{0!s}: spline order not supported'.format(funcname))
 
     array = np.asarray(array)
     if np.iscomplexobj(array):
-        raise TypeError('mahotas.interpolate.%s: Complex type not supported' % funcname)
+        raise TypeError('mahotas.interpolate.{0!s}: Complex type not supported'.format(funcname))
     return array
 
 def spline_filter1d(array, order=3, axis=-1, out=None, dtype=np.float64, output=None):

@@ -248,7 +248,7 @@ def remove_bordering(labeled, rsize=1, out=None, output=None):
         index[dim] = slice(None,None,None)
     if out is None and output is not None: #pragma: no cover
         import warnings
-        warnings.warn('Using deprecated `output` argument in function `%s`. Please use `out` in the future.' % 'remove_bordering', DeprecationWarning)
+        warnings.warn('Using deprecated `output` argument in function `{0!s}`. Please use `out` in the future.'.format('remove_bordering'), DeprecationWarning)
         out = output
     if out is None:
         out = im.copy()
@@ -374,10 +374,10 @@ def _as_labeled(array, labeled, funcname, inplace='unused'):
     elif not inplace:
         labeled = np.array(labeled, dtype=np.intc)
     elif labeled.dtype != np.intc or not labeled.flags.carray:
-        raise ValueError('mahotas.labeled.%s: labeled must be a C-array of type int' % funcname)
+        raise ValueError('mahotas.labeled.{0!s}: labeled must be a C-array of type int'.format(funcname))
 
     if array.shape != labeled.shape:
-        raise ValueError('mahotas.labeled.%s: `array` is not the same size as `labeled`' % funcname)
+        raise ValueError('mahotas.labeled.{0!s}: `array` is not the same size as `labeled`'.format(funcname))
     return labeled
 
 

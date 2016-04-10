@@ -28,21 +28,20 @@ def _get_output(array, out, fname, dtype=None, output=None):
         dtype = array.dtype
     if output is not None:
         import warnings
-        warnings.warn('Using deprecated `output` argument in function `%s`. Please use `out` in the future. It has exactly the same meaning and it matches what numpy uses.' % fname, DeprecationWarning)
+        warnings.warn('Using deprecated `output` argument in function `{0!s}`. Please use `out` in the future. It has exactly the same meaning and it matches what numpy uses.'.format(fname), DeprecationWarning)
         if out is not None:
-            warnings.warn('Using both `out` and `output` in function `%s`.\nMahotas is going to ignore the `output` argument and use the `out` version exclusively.' % fname)
+            warnings.warn('Using both `out` and `output` in function `{0!s}`.\nMahotas is going to ignore the `output` argument and use the `out` version exclusively.'.format(fname))
         else:
             out = output
     if out is None:
         return np.empty(array.shape, dtype)
     if out.dtype != dtype:
         raise ValueError(
-            'mahotas.%s: `out` has wrong type (out.dtype is %s; expected %s)%s' %
-                (fname, out.dtype, dtype, detail))
+            'mahotas.{0!s}: `out` has wrong type (out.dtype is {1!s}; expected {2!s}){3!s}'.format(fname, out.dtype, dtype, detail))
     if out.shape != array.shape:
-        raise ValueError('mahotas.%s: `out` has wrong shape (got %s, while expecting %s)%s' % (fname, out.shape, array.shape, detail))
+        raise ValueError('mahotas.{0!s}: `out` has wrong shape (got {1!s}, while expecting {2!s}){3!s}'.format(fname, out.shape, array.shape, detail))
     if not out.flags.contiguous:
-        raise ValueError('mahotas.%s: `out` is not c-array%s' % (fname,detail))
+        raise ValueError('mahotas.{0!s}: `out` is not c-array{1!s}'.format(fname, detail))
     return out
 
 def _get_axis(array, axis, fname):
@@ -66,7 +65,7 @@ def _get_axis(array, axis, fname):
     if axis < 0:
         axis += len(array.shape)
     if not (0 <= axis < len(array.shape)):
-        raise ValueError('mahotas.%s: `axis` is out of bounds (maximum was %s, got %s)' % (fname, array.ndim, axis))
+        raise ValueError('mahotas.{0!s}: `axis` is out of bounds (maximum was {1!s}, got {2!s})'.format(fname, array.ndim, axis))
     return axis
 
 def _normalize_sequence(array, value, fname):
@@ -93,7 +92,7 @@ def _normalize_sequence(array, value, fname):
     except TypeError:
         return [value for s in array.shape]
     if len(value) != array.ndim:
-        raise ValueError('mahotas.%s: argument is sequence, but has wrong size (%s for an array of %s dimensions)' % (fname, len(value), array.ndim))
+        raise ValueError('mahotas.{0!s}: argument is sequence, but has wrong size ({1!s} for an array of {2!s} dimensions)'.format(fname, len(value), array.ndim))
     return value
 
 def _verify_is_floatingpoint_type(A, function_name):
@@ -110,7 +109,7 @@ def _verify_is_floatingpoint_type(A, function_name):
         Used for error messages
     '''
     if not np.issubdtype(A.dtype, np.float):
-        raise TypeError('mahotas.%s: This function only accepts floating-point types (passed array of type %s)' % (function_name, A.dtype))
+        raise TypeError('mahotas.{0!s}: This function only accepts floating-point types (passed array of type {1!s})'.format(function_name, A.dtype))
 
 def _verify_is_integer_type(A, function_name):
     '''
@@ -127,7 +126,7 @@ def _verify_is_integer_type(A, function_name):
     '''
     k = A.dtype.kind
     if k not in "iub": # integer, unsigned integer, boolean
-        raise TypeError('mahotas.%s: This function only accepts integer types (passed array of type %s)' % (function_name, A.dtype))
+        raise TypeError('mahotas.{0!s}: This function only accepts integer types (passed array of type {1!s})'.format(function_name, A.dtype))
 
 def _verify_is_nonnegative_integer_type(A, function_name):
     '''
@@ -171,8 +170,8 @@ def _as_floating_point_array(array):
 
 def _check_3(arr, funcname):
     if arr.ndim != 3 or arr.shape[2] != 3:
-        raise ValueError('mahotas.%s: this function expects an array of shape (h, w, 3), received an array of shape %s.' % (funcname, arr.shape))
+        raise ValueError('mahotas.{0!s}: this function expects an array of shape (h, w, 3), received an array of shape {1!s}.'.format(funcname, arr.shape))
 
 def _check_2(arr, funcname):
     if arr.ndim != 2:
-        raise ValueError('mahotas.%s: this function can only handle 2D arrays (passed array with shape %s).' % (funcname, arr.shape))
+        raise ValueError('mahotas.{0!s}: this function can only handle 2D arrays (passed array with shape {1!s}).'.format(funcname, arr.shape))

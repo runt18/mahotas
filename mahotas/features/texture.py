@@ -405,7 +405,7 @@ def cooccurence(f, direction, output=None, symmetric=True):
     elif len(f.shape) == 3 and not (0 <= direction < 13):
         raise ValueError('mahotas.texture.cooccurence: `direction` {0} is not in range(13).'.format(direction))
     elif len(f.shape) not in (2,3):
-        raise ValueError('mahotas.texture.cooccurence: cannot handle images of %s dimensions.' % len(f.shape))
+        raise ValueError('mahotas.texture.cooccurence: cannot handle images of {0!s} dimensions.'.format(len(f.shape)))
 
     if output is None:
         mf = f.max()

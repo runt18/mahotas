@@ -422,7 +422,7 @@ def gaussian_filter(array, sigma, order=0, mode='reflect', cval=0., out=None, ou
 def _wavelet_array(f, inline, func):
     f = _as_floating_point_array(f)
     if f.ndim != 2:
-        raise ValueError('mahotas.convolve.%s: Only works for 2D images' % func)
+        raise ValueError('mahotas.convolve.{0!s}: Only works for 2D images'.format(func))
     if not inline:
         return f.copy()
     return f
@@ -537,7 +537,7 @@ def haar(f, preserve_energy=True, inline=False):
         f /= 2.0
     return f
 
-_daubechies_codes = [('D%s' % ci) for ci in range(2,21,2)]
+_daubechies_codes = [('D{0!s}'.format(ci)) for ci in range(2,21,2)]
 def _daubechies_code(c):
     try:
         return _daubechies_codes.index(c)
